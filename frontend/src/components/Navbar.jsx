@@ -14,7 +14,6 @@ function Navbar() {
   const [showCountry, setShowCountry] = useState(false);
   const [showTrending, setShowTrending] = useState(true);
 
-  // ✅ NEW STATE FOR TRENDING
   const defaultTrending = [
     "Black Overshirt",
     "Relaxed Fit Jeans",
@@ -45,19 +44,14 @@ function Navbar() {
 
   const handleSuggestionClick = (text) => {
     setSearchValue(text);
-
-    // ✅ clicked item hide ho jaaye
     setTrendingItems((prev) =>
       prev.filter((item) => item !== text)
     );
-
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
   const handleClear = () => {
     setSearchValue("");
-
-    // ✅ trending wapas aa jaaye
     setTrendingItems(defaultTrending);
   };
 
@@ -66,13 +60,13 @@ function Navbar() {
       <nav className="w-full bg-black text-white border-b border-gray-800 fixed top-8 left-0 z-50">
         <div
           ref={menuRef}
-          className="w-full px-12 h-20 flex items-center justify-between"
+          className="w-full px-4 sm:px-6 md:px-12 h-16 sm:h-18 md:h-20 flex items-center justify-between"
         >
-          <h1 className="text-xl font-bold tracking-widest cursor-pointer">
+          <h1 className="text-lg sm:text-xl font-bold tracking-widest cursor-pointer">
             VELTORN
           </h1>
 
-          <div className="flex items-center gap-8 relative">
+          <div className="flex items-center gap-4 sm:gap-6 md:gap-8 relative">
             {/* SEARCH */}
             <div className="relative">
               <Search
@@ -84,7 +78,7 @@ function Navbar() {
               />
 
               {searchOpen && (
-                <div className="absolute right-0 top-14 w-96 bg-[#0f0f0f] border border-gray-800 rounded-2xl shadow-2xl p-6 space-y-5">
+                <div className="absolute right-0 top-14 w-[90vw] sm:w-80 md:w-96 bg-[#0f0f0f] border border-gray-800 rounded-2xl shadow-2xl p-4 sm:p-6 space-y-5">
                   <div className="flex items-center gap-3 border border-gray-700 rounded-xl px-4 py-3 bg-black focus-within:border-white transition">
                     <Search size={18} className="text-gray-400" />
                     <input
@@ -107,7 +101,6 @@ function Navbar() {
                     />
                   </div>
 
-                  {/* Trending */}
                   {showTrending &&
                     searchValue === "" &&
                     trendingItems.length > 0 && (
@@ -155,7 +148,7 @@ function Navbar() {
               />
 
               {activeMenu === "account" && (
-                <div className="absolute right-0 top-14 w-56 bg-[#111] border border-gray-800 rounded-2xl shadow-xl p-5 space-y-4">
+                <div className="absolute right-0 top-14 w-48 sm:w-56 bg-[#111] border border-gray-800 rounded-2xl shadow-xl p-4 sm:p-5 space-y-4">
                   <p className="hover:text-gray-400 cursor-pointer">
                     👤 My Profile
                   </p>
@@ -182,7 +175,7 @@ function Navbar() {
               />
 
               {activeMenu === "bag" && (
-                <div className="absolute right-0 top-14 w-72 bg-[#111] border border-gray-800 rounded-2xl shadow-xl p-6 space-y-4">
+                <div className="absolute right-0 top-14 w-[85vw] sm:w-64 md:w-72 bg-[#111] border border-gray-800 rounded-2xl shadow-xl p-4 sm:p-6 space-y-4">
                   <h3 className="text-sm font-semibold">
                     Your Shopping Bag
                   </h3>
@@ -201,15 +194,15 @@ function Navbar() {
 
       {/* INDIA MODAL */}
       {showCountry && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-100">
-          <div className="relative bg-[#111] border border-gray-800 rounded-3xl shadow-2xl p-8 w-150 max-w-[90%] text-white">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="relative bg-[#111] border border-gray-800 rounded-3xl shadow-2xl p-6 sm:p-8 w-[95%] sm:w-125 md:w-150 max-w-[95%] text-white">
             <X
               size={22}
               className="absolute top-5 right-5 cursor-pointer hover:text-red-500"
               onClick={() => setShowCountry(false)}
             />
 
-            <h2 className="text-2xl font-semibold mb-6 text-center">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-6 text-center">
               India 🇮🇳
             </h2>
 
@@ -217,7 +210,7 @@ function Navbar() {
               <img
                 src="/assets/images/earth4.png"
                 alt="India Map"
-                className="w-100 object-contain"
+                className="w-40 sm:w-60 md:w-80 object-contain"
               />
             </div>
 

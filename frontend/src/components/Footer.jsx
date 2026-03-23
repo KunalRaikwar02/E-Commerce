@@ -29,13 +29,14 @@ function Footer() {
       )}
 
       {/* Top Content */}
-      <div className="relative z-10 w-full pt-10 pb-32 flex justify-between ">
+      <div className="relative z-10 w-full pt-10 pb-32 flex flex-col lg:flex-row justify-between">
+        
         {/* Left Side */}
-        <div className="flex gap-45 pl-25">
+        <div className="flex flex-col sm:flex-row gap-10 sm:gap-20 lg:gap-45 pl-6 sm:pl-10 lg:pl-25">
           
           {/* Catalog */}
           <div>
-            <h4 className="text-xs tracking-widest mb-6 opacity-80 ">
+            <h4 className="text-xs tracking-widest mb-6 opacity-80">
               CATALOG
             </h4>
             <ul className="text-xs font-semibold scale-y-150">
@@ -59,7 +60,7 @@ function Footer() {
             <h4 className="text-xs tracking-widest mb-6 opacity-80">
               COLLECTION
             </h4>
-            <ul className=" text-xs font-semibold scale-y-150">
+            <ul className="text-xs font-semibold scale-y-150">
               <li className="cursor-pointer hover:text-gray-300 transition">
                 ANIME TSHIRT
               </li>
@@ -75,6 +76,7 @@ function Footer() {
             </ul>
           </div>
 
+          {/* Social */}
           <div>
             <h4 className="text-xs tracking-widest mb-6 opacity-80">
               SOCIAL
@@ -94,7 +96,7 @@ function Footer() {
         </div>
 
         {/* Right Side */}
-        <div className="max-w-md mr-25">
+        <div className="max-w-md mr-6 sm:mr-10 lg:mr-25 mt-10 lg:mt-0">
           <h4 className="text-xs tracking-widest mb-6 opacity-80">
             SIGN UP
           </h4>
@@ -105,19 +107,19 @@ function Footer() {
 
           <form
             onSubmit={handleSubmit}
-            className="flex items-center bg-white rounded-md overflow-hidden h-12"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center bg-white rounded-md overflow-hidden h-auto sm:h-12"
           >
             <input
               type="email"
               placeholder="Email *"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 h-full px-4 text-black outline-none text-sm"
+              className="flex-1 h-12 sm:h-full px-4 text-black outline-none text-sm"
             />
 
             <button
               type="submit"
-              className="bg-black text-white h-10 px-6 mr-1 rounded-md text-sm font-semibold flex items-center justify-center cursor-pointer hover:bg-gray-800 transition"
+              className="bg-black text-white h-12 sm:h-10 px-6 sm:mr-1 sm:my-1 rounded-md text-sm font-semibold flex items-center justify-center cursor-pointer hover:bg-gray-800 transition"
             >
               SUBMIT →
             </button>
@@ -128,7 +130,7 @@ function Footer() {
       {/* Big Background Text */}
       <div className="absolute bottom-0 left-0 w-full pointer-events-none select-none">
         <h1
-          className="text-[20vw] scale-y-170 leading-none font-extrabold uppercase text-white pl-10 whitespace-nowrap opacity-90"
+          className="text-[28vw] lg:text-[20vw] scale-y-170 leading-none font-extrabold uppercase text-white pl-6 lg:pl-10 whitespace-nowrap opacity-90"
           style={{
             filter: "blur(1.5px)",
             textShadow: `

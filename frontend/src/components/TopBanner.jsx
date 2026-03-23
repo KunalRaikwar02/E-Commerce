@@ -9,7 +9,12 @@ function TopBanner() {
         {[...items, ...items].map((text, index) => (
           <span
             key={index}
-            className="px-12 py-2 text-black text-sm font-semibold"
+            className="
+              px-6 sm:px-8 md:px-12
+              py-1 sm:py-2
+              text-xs sm:text-sm
+              text-black font-semibold
+            "
           >
             {text}
           </span>
