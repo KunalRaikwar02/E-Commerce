@@ -1,8 +1,20 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Navigation ke liye
 
-function Footer() {
+function AnimeFooter() {
   const [email, setEmail] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  // Navigation Logic (Same as yours)
+  const handleFilterClick = (type, value) => {
+    window.scrollTo(0, 0); 
+    if (type === "anime") {
+      navigate("/collections/all", { state: { anime: value } });
+    } else {
+      navigate("/collections/all", { state: { filter: value } });
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +29,7 @@ function Footer() {
   };
 
   return (
-    <footer className="relative bg-red-800 text-white h-160 overflow-hidden mt-32">
+   <footer className="relative bg-[#581a90] text-white h-160 overflow-hidden mt-32">
       
       {/* Success Card */}
       {showSuccess && (
@@ -36,20 +48,20 @@ function Footer() {
           
           {/* Catalog */}
           <div>
-            <h4 className="text-xs tracking-widest mb-6 opacity-80">
+            <h4 className="text-xs mb-6 tracking-widest font-bold opacity-80">
               CATALOG
             </h4>
-            <ul className="text-xs font-semibold scale-y-150">
-              <li className="cursor-pointer hover:text-gray-300 transition">
+            <ul className="text-xs font-bold scale-y-150">
+              <li onClick={() => handleFilterClick("catalog", "Shirt")} className="cursor-pointer hover:text-gray-300 transition">
                 SHIRT
               </li>
-              <li className="cursor-pointer hover:text-gray-300 transition">
+              <li onClick={() => handleFilterClick("catalog", "T-Shirt")} className="cursor-pointer hover:text-gray-300 transition">
                 TSHIRT
               </li>
-              <li className="cursor-pointer hover:text-gray-300 transition">
+              <li onClick={() => handleFilterClick("catalog", "Jeans")} className="cursor-pointer hover:text-gray-300 transition">
                 JEANS
               </li>
-              <li className="cursor-pointer hover:text-gray-300 transition">
+              <li onClick={() => handleFilterClick("catalog", "Cap")} className="cursor-pointer hover:text-gray-300 transition">
                 CAP
               </li>
             </ul>
@@ -57,31 +69,31 @@ function Footer() {
 
           {/* Collection */}
           <div>
-            <h4 className="text-xs tracking-widest mb-6 opacity-80">
-              COLLECTION
+            <h4 className="text-xs mb-6 tracking-widest font-bold opacity-80">
+              ANIME COLLECTION
             </h4>
-            <ul className="text-xs font-semibold scale-y-150">
-              <li className="cursor-pointer hover:text-gray-300 transition">
-                ANIME TSHIRT
+            <ul className="text-xs font-bold scale-y-150">
+              <li onClick={() => handleFilterClick("anime", "Naruto")} className="cursor-pointer hover:text-gray-300 transition">
+                NARUTO
               </li>
-              <li className="cursor-pointer hover:text-gray-300 transition">
-                SHORTS
+              <li onClick={() => handleFilterClick("anime", "Solo Leveling")} className="cursor-pointer hover:text-gray-300 transition">
+                SOLO LEVELING
               </li>
-              <li className="cursor-pointer hover:text-gray-300 transition">
-                CHAINS
+              <li onClick={() => handleFilterClick("anime", "Demon Slayer")} className="cursor-pointer hover:text-gray-300 transition">
+                DEMON SLAYER
               </li>
-              <li className="cursor-pointer hover:text-gray-300 transition">
-                BANDS
+              <li onClick={() => handleFilterClick("anime", "One Piece")} className="cursor-pointer hover:text-gray-300 transition">
+                ONE PIECE
               </li>
             </ul>
           </div>
 
           {/* Social */}
           <div>
-            <h4 className="text-xs tracking-widest mb-6 opacity-80">
+            <h4 className="text-xs mb-6 tracking-widest font-bold opacity-80">
               SOCIAL
             </h4>
-            <ul className="text-xs font-semibold scale-y-150">
+            <ul className="text-xs font-bold scale-y-150">
               <li className="cursor-pointer hover:text-gray-300 transition">
                 INSTAGRAM
               </li>
@@ -97,7 +109,7 @@ function Footer() {
 
         {/* Right Side */}
         <div className="max-w-md mr-6 sm:mr-10 lg:mr-25 mt-10 lg:mt-0">
-          <h4 className="text-xs tracking-widest mb-6 opacity-80">
+          <h4 className="text-xs font-bold tracking-widest mb-6 opacity-80">
             SIGN UP
           </h4>
 
@@ -146,4 +158,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default AnimeFooter;

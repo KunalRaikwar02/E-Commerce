@@ -34,7 +34,7 @@ function FeaturedCollection() {
             />
 
             <div className="absolute top-3 left-3 flex gap-2">
-              <span className="bg-emerald-500 text-white text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 rounded-full font-semibold shadow">
+              <span className="bg-green-600 text-white text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 rounded-full font-semibold shadow">
                 NEW
               </span>
               <span className="bg-black text-white text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 rounded-full font-semibold shadow">
@@ -64,7 +64,7 @@ function FeaturedCollection() {
             />
 
             <div className="absolute top-4 left-4 flex gap-2">
-              <span className="bg-emerald-500 text-white text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 rounded-full font-semibold shadow">
+              <span className="bg-green-600 text-white text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 rounded-full font-semibold shadow">
                 NEW
               </span>
               <span className="bg-black text-white text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 rounded-full font-semibold shadow">
