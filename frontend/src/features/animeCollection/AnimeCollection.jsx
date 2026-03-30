@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import AnimeTopBanner from "./components/AnimeTopBanner";
+import AnimeNavbar from "./components/AnimeNavbar";
 import ProductCard from "./components/ProductCard";
 import CategoryCard from "./components/CategoryCard";
 import AnimeFollowSection from "./components/AnimeFollowSection";
@@ -34,7 +36,11 @@ const AnimeCollection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white mt-20 overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-white mt-8 overflow-x-hidden">
+
+      <AnimeTopBanner />
+      <AnimeNavbar />
+
       <div className="w-full">
         <img src="/assets/images/collectionimg.png" alt="Banner" className="w-full h-[40vh] md:h-[70vh] object-cover object-top" />
       </div>

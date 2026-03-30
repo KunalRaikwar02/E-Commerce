@@ -57,7 +57,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="w-full bg-black text-white border-b border-gray-800 fixed top-8 left-0 z-50">
+      <nav data-cursor="white" className="w-full bg-black text-white border-b border-black fixed top-8 left-0 z-50">
         <div
           ref={menuRef}
           className="w-full px-4 sm:px-6 md:px-12 h-16 sm:h-18 md:h-20 flex items-center justify-between"

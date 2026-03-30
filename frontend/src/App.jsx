@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
-// ... baaki saare imports wahi rahenge jo tumne diye hain ...
+// --- MAIN PAGE COMPONENTS ---
 import TopBanner from "./features/mainPage/topBanner/TopBanner";
 import Navbar from "./features/mainPage/navbar/Navbar";
 import HeroVideo from "./features/mainPage/heroPage/HeroVideo";
@@ -14,13 +14,19 @@ import AboutBanner from "./features/mainPage/aboutUs/AboutBanner";
 import FollowSection from "./features/mainPage/followUs/FollowSection";
 import Footer from "./features/mainPage/footer/Footer";
 
+// --- OTHER FEATURES ---
 import FilterPage from "./features/filterPage/FilterPage";
 import MouseTrail from "./features/CursorEffect/MouseTrail";
 import AnimeCollection from "./features/animeCollection/AnimeCollection";
 
+// --- ANIME SPECIFIC COMPONENTS ---
+import AnimeTopBanner from "./features/animeCollection/components/AnimeTopBanner";
+import AnimeNavbar from "./features/animeCollection/components/AnimeNavbar";
+
+// --- STYLES ---
 import "./App.css";
 
-// --- LANDING PAGE ---
+// --- LANDING PAGE COMPONENT ---
 const LandingPage = () => (
   <>
     <HeroVideo />
@@ -36,7 +42,7 @@ const LandingPage = () => (
 
 /**
  * MAIN CONTENT COMPONENT
- * Iske andar hum logic likhenge ki Footer kab dikhana hai kab nahi
+ * Yahan hum conditional logic handle kar rahe hain
  */
 function MainContent() {
   const location = useLocation();
@@ -47,24 +53,38 @@ function MainContent() {
   return (
     <>
       <MouseTrail />
-      <TopBanner />
-      <Navbar />
+      
+      {/* 1. TOP BANNER LOGIC */}
+      {isAnimePage ? <AnimeTopBanner /> : <TopBanner />}
+      
+      {/* 2. NAVBAR LOGIC */}
+      {isAnimePage ? <AnimeNavbar /> : <Navbar />}
       
       <main className="min-h-screen">
         <Routes>
+          {/* Route for Home Page */}
           <Route path="/" element={<LandingPage />} />
+          
+          {/* Route for Filter/Category Page */}
           <Route path="/collections/:categoryName" element={<FilterPage />} />
+          
+          {/* Default Route for 'Shop All' */}
           <Route path="/collections/all" element={<FilterPage />} />
+
+          {/* Anime Collection Page */}
           <Route path="/anime-collection" element={<AnimeCollection />} />
         </Routes>
       </main>
 
-      {/* AGAR ANIME PAGE NAHI HAI, TABHI MAIN FOOTER DIKHAO */}
+      {/* 3. AGAR ANIME PAGE NAHI HAI, TABHI RED FOOTER DIKHAO */}
       {!isAnimePage && <Footer />}
     </>
   );
 }
 
+/**
+ * MAIN APP COMPONENT
+ */
 function App() {
   return (
     <Router>
