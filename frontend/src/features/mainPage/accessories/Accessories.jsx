@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -7,6 +8,13 @@ import {
 } from "lucide-react";
 
 function Accessories() {
+  const navigate = useNavigate();
+
+const handleViewAll = () => {
+    // Hum FilterPage par ja rahe hain aur 'Accessories' filter saath bhej rahe hain
+    navigate("/collections/accessories", { state: { filter: "Accessories" } });
+  };
+
   const scrollRef = useRef(null);
 
   const products = [
@@ -77,7 +85,9 @@ function Accessories() {
           ACCESSORIES
         </h2>
 
-        <button className="group bg-black text-white px-4 py-2.5 rounded-md flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[2px] hover:bg-zinc-800 transition-all shrink-0 cursor-pointer">
+        <button
+        onClick={handleViewAll}
+        className="group bg-black text-white px-4 py-2.5 rounded-md flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[2px] hover:bg-zinc-800 transition-all shrink-0 cursor-pointer">
           VIEW ALL
           <ArrowRight
             size={14}

@@ -61,7 +61,7 @@ function AnimeNavbar() {
       <nav data-cursor="white" className="w-full fixed top-15 left-0 z-50 px-4 sm:px-6 md:px-10">
         <div
           ref={menuRef}
-          className="w-full bg-black text-white border border-gray-800 rounded-3xl shadow-2xl px-4 sm:px-6 md:px-12 h-16 sm:h-18 md:h-20 flex items-center justify-between"
+          className="w-full bg-black text-white border border-gray-800 rounded-3xl px-4 sm:px-6 md:px-12 h-16 sm:h-18 md:h-20 flex items-center justify-between"
         >
           <h1 className="text-lg sm:text-xl font-bold tracking-widest cursor-pointer uppercase">
             VELTORN 

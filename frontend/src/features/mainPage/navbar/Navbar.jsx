@@ -62,7 +62,7 @@ function Navbar() {
           ref={menuRef}
           className="w-full px-4 sm:px-6 md:px-12 h-16 sm:h-18 md:h-20 flex items-center justify-between"
         >
-          <h1 className="text-lg sm:text-xl font-bold tracking-widest cursor-pointer">
+          <h1 className="text-lg sm:text-xl font-bold tracking-widest">
             VELTORN
           </h1>
 

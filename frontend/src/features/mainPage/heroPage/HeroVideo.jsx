@@ -311,16 +311,16 @@ export default function HeroVideo() {
           <img 
             key={index}
             src={shirts[index].image} 
-            className={`max-h-full max-w-full object-contain transition-all duration-500 drop-shadow-[0_20px_50px_rgba(255,255,255,0.15)] ${
+            className={`max-h-full max-w-full object-contain transition-all duration-500 ${
               direction === "next" ? "animate-in slide-in-from-right-10" : "animate-in slide-in-from-left-10"
             }`} 
             alt="shirt"
           />
         </div>
         
-        <div className="flex items-center gap-6 mt-6">
+        <div className="flex items-center gap-6">
           <button onClick={prevSlide} className="w-10 h-10 flex items-center justify-center bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition cursor-pointer">‹</button>
-          <span className="font-mono text-sm tracking-[0.3em]">{index + 1} / {shirts.length}</span>
+          <span className="text-sm">{index + 1} / {shirts.length}</span>
           <button onClick={nextSlide} className="w-10 h-10 flex items-center justify-center bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition cursor-pointer">›</button>
         </div>
       </div>

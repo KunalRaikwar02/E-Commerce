@@ -139,7 +139,7 @@ function NewArrivals() {
               </div>
 
               {/* Main Image */}
-              <img
+              <img  
                 src={product.image}
                 alt={product.title}
                 className="w-full h-full object-cover group-hover:object-contain transition-all duration-700 ease-in-out group-hover:blur-[5px] rounded-2xl"

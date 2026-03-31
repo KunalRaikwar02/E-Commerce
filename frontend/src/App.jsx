@@ -13,18 +13,17 @@ import FeaturedCollection from "./features/mainPage/featureCollection/FeaturedCo
 import AboutBanner from "./features/mainPage/aboutUs/AboutBanner";
 import FollowSection from "./features/mainPage/followUs/FollowSection";
 import Footer from "./features/mainPage/footer/Footer";
+import ProductPage from "./features/productPage/ProductPage";
 
 // --- OTHER FEATURES ---
 import FilterPage from "./features/filterPage/FilterPage";
 import MouseTrail from "./features/CursorEffect/MouseTrail";
 import AnimeCollection from "./features/animeCollection/AnimeCollection";
+import AnimeFooter from "./features/animeCollection/components/AnimeFooter";
 
 // --- ANIME SPECIFIC COMPONENTS ---
 import AnimeTopBanner from "./features/animeCollection/components/AnimeTopBanner";
 import AnimeNavbar from "./features/animeCollection/components/AnimeNavbar";
-
-// --- STYLES ---
-import "./App.css";
 
 // --- LANDING PAGE COMPONENT ---
 const LandingPage = () => (
@@ -50,16 +49,21 @@ function MainContent() {
   // Check kar rahe hain ki kya hum anime-collection page par hain
   const isAnimePage = location.pathname === "/anime-collection";
 
+  const isProductPage = location.pathname.startsWith("/product/");
+  const useAnimeTheme = isAnimePage || isProductPage;
+
   return (
     <>
       <MouseTrail />
       
       {/* 1. TOP BANNER LOGIC */}
-      {isAnimePage ? <AnimeTopBanner /> : <TopBanner />}
-      
+      {/* {isAnimePage ? <AnimeTopBanner /> : <TopBanner />} */}
+      {useAnimeTheme ? <AnimeTopBanner /> : <TopBanner />}
+
       {/* 2. NAVBAR LOGIC */}
-      {isAnimePage ? <AnimeNavbar /> : <Navbar />}
-      
+      {/* {isAnimePage ? <AnimeNavbar /> : <Navbar />} */}
+      {useAnimeTheme ? <AnimeNavbar /> : <Navbar />}
+
       <main className="min-h-screen">
         <Routes>
           {/* Route for Home Page */}
@@ -67,17 +71,16 @@ function MainContent() {
           
           {/* Route for Filter/Category Page */}
           <Route path="/collections/:categoryName" element={<FilterPage />} />
-          
-          {/* Default Route for 'Shop All' */}
-          <Route path="/collections/all" element={<FilterPage />} />
 
           {/* Anime Collection Page */}
           <Route path="/anime-collection" element={<AnimeCollection />} />
+
+          <Route path="/product/:productId" element={<ProductPage />} />
         </Routes>
       </main>
 
       {/* 3. AGAR ANIME PAGE NAHI HAI, TABHI RED FOOTER DIKHAO */}
-      {!isAnimePage && <Footer />}
+      {useAnimeTheme ? <AnimeFooter /> : <Footer />}
     </>
   );
 }
