@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Home, ChevronRight, Ruler, Search, Globe, User, ShoppingBag, X } from "lucide-react";
+
+
+import { useCart } from "../cart/CartContext";   /* add to cart neeche se agar hataya toh isko bhi hatao */
  
 const PURPLE = "#581a90";
  
@@ -101,6 +104,8 @@ export default function ProductPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
  
+  const { addToCart, setIsCartOpen } = useCart(); 
+
   const product = state?.product || {
     id: "demo",
     name: "Giyu Tomioka Oversized Tee",
@@ -121,14 +126,38 @@ export default function ProductPage() {
   const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
  
-  const handleAddToCart = () => {
+  // const handleAddToCart = () => {
+  //   if (!selectedSize) {
+  //     alert("Please select a size first!");
+  //     return;
+  //   }
+    
+  //   setAddedToCart(true);
+  //   setTimeout(() => setAddedToCart(false), 2500);
+  // };
+
+
+
+// add to cart hatqane ke liye isko hatakar uper wala rehnde do ---------------------------------------------------------------------------
+const handleAddToCart = () => {
     if (!selectedSize) {
       alert("Please select a size first!");
       return;
     }
+
+    // Actual cart context function call
+    addToCart(product, selectedSize, quantity);
+    
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2500);
+    // 1 second baad drawer khol do
+    setTimeout(() => {
+      setAddedToCart(false);
+      setIsCartOpen(true);
+    }, 1000);
   };
+// ----------------------------------------------------------------------------------------
+
+
  
   return (
     <div className="min-h-screen bg-white mt-7">
