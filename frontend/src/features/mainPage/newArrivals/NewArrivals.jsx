@@ -178,7 +178,6 @@
 // export default NewArrivals;
 
 
-
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ShoppingCart, ArrowRight } from "lucide-react";
@@ -203,6 +202,11 @@ function NewArrivals() {
     navigate(`/product/${product.id}`, { state: { product } });
   };
 
+  // VIEW ALL → filter page with T-Shirt filter (new arrivals are all tees)
+  const handleViewAll = () => {
+    navigate("/collections/all", { state: { filter: "T-Shirt" } });
+  };
+
   const scroll = (direction) => {
     const container = scrollRef.current;
     const scrollAmount = 450;
@@ -217,7 +221,10 @@ function NewArrivals() {
         <h2 className="text-black text-3xl md:text-6xl font-black uppercase tracking-[-3px] scale-y-[1.6] origin-left leading-none">
           NEW ARRIVALS
         </h2>
-        <button className="group bg-black text-white px-4 py-2.5 rounded-md flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[2px] hover:bg-zinc-800 transition-all shrink-0 cursor-pointer">
+        <button
+          onClick={handleViewAll}
+          className="group bg-black text-white px-4 py-2.5 rounded-md flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[2px] hover:bg-zinc-800 transition-all shrink-0 cursor-pointer"
+        >
           VIEW ALL
           <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </button>

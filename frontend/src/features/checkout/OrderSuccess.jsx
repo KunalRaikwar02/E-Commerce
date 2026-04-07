@@ -1,66 +1,107 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Check, Package, ArrowRight } from "lucide-react";
-import Confetti from "react-confetti"; // `npm install react-confetti` required
+import Confetti from "react-confetti";
+import ScratchCard from "./ScratchCard";
 
 export default function OrderSuccess() {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const orderId = state?.orderId || "VEL-XXXXX";
+
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [showScratch, setShowScratch] = useState(false);
+  const [scratchDone, setScratchDone] = useState(false);
+  const [couponWon, setCouponWon] = useState(null);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
-    // Window resize handler for Confetti
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener("resize", handleResize);
+
+    // Check if scratch card already used
+    const used = JSON.parse(localStorage.getItem("veltorn_scratch_used") || "[]");
+    const userId = JSON.parse(localStorage.getItem("veltorn_user") || "{}")?._id || "guest";
+    const alreadyUsed = used.includes(userId);
+
+    if (!alreadyUsed) {
+      setTimeout(() => setShowScratch(true), 1000);
+    } else {
+      setScratchDone(true);
+      setShowConfetti(true);
+    }
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const handleScratchClose = () => {
+    setShowScratch(false);
+    setScratchDone(true);
+    setShowConfetti(true);
+  };
+
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center pt-20 pb-20 px-4 text-center">
-      
-      {/* Confetti Animation (Optional) */}
-      <Confetti width={windowSize.width} height={windowSize.height} recycle={false} numberOfPieces={300} gravity={0.1} colors={['#581a90', '#34d399', '#facc15', '#000000']}/>
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center pt-20 pb-20 px-4 text-center relative overflow-hidden">
 
-      {/* Animated Tick Circle */}
-      <div className="relative mb-12 animate-in zoom-in duration-700">
-        <div className="w-40 h-40 bg-emerald-50 rounded-full flex items-center justify-center border-4 border-emerald-100 shadow-xl shadow-emerald-500/10">
-          <Check className="text-emerald-500 stroke-5" size={80}/>
+      {showConfetti && (
+        <Confetti
+          width={windowSize.width}
+          height={windowSize.height}
+          recycle={false}
+          numberOfPieces={220}
+          gravity={0.12}
+          colors={["#581a90", "#34d399", "#facc15", "#000", "#f472b6"]}
+        />
+      )}
+
+      {showScratch && (
+        <ScratchCard
+          onCouponRevealed={c => setCouponWon(c)}
+          onClose={handleScratchClose}
+        />
+      )}
+
+      {/* Check icon */}
+      <div className="relative mb-12 animate-in zoom-in duration-500">
+        <div className="w-32 h-32 bg-emerald-50 rounded-full flex items-center justify-center border-4 border-emerald-100 shadow-xl">
+          <Check className="text-emerald-500" size={64} strokeWidth={2.5} />
         </div>
-        <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-[#581a90] rounded-full flex items-center justify-center text-white shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
-            <Package size={30}/>
+        <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-[#581a90] rounded-full flex items-center justify-center text-white shadow-xl animate-in fade-in slide-in-from-bottom-3 duration-500 delay-300">
+          <Package size={22} />
         </div>
       </div>
 
-      {/* Message - Stretched Typography */}
-      <div className="space-y-4 mb-16 max-w-lg">
-          <h1 className="text-emerald-500 text-5xl md:text-7xl font-black uppercase tracking-[-3px] scale-y-[1.5] origin-center leading-none">
-            SUCCESSFULLY <span className="text-zinc-900">PLACED</span>
-          </h1>
-          <p className="text-zinc-500 font-bold text-xs uppercase tracking-[0.3em] mt-8 block">CURATED ORDER / #VEL-4091A</p>
-          <p className="text-sm leading-relaxed text-black pt-4">
-            Congratulations! Your order has been curated and is ready for dispatch. A confirmation email with tracking details will be sent to you shortly. Thank you for choosing VELTORN.
-          </p>
+      <div className="space-y-3 mb-10 max-w-md">
+        <h1 className="text-emerald-500 text-4xl md:text-6xl font-black uppercase tracking-[-2px] scale-y-[1.3] origin-center leading-none">
+          ORDER PLACED!
+        </h1>
+        <p className="text-zinc-400 font-bold text-xs uppercase tracking-[0.3em] mt-4 block">
+          #{orderId}
+        </p>
+        <p className="text-sm leading-relaxed text-gray-500 pt-2">
+          Your order is confirmed. We'll start processing it right away!
+        </p>
+
+        {couponWon && (
+          <div className="mt-5 bg-[#581a90]/10 border border-[#581a90]/20 rounded-2xl p-4">
+            <p className="text-xs font-bold text-[#581a90] uppercase tracking-widest">🎁 Coupon Saved!</p>
+            <p className="font-black text-xl text-[#581a90] mt-1">{couponWon}</p>
+            <p className="text-xs text-gray-400 mt-1">Use at checkout on your next order</p>
+          </div>
+        )}
       </div>
 
-      {/* Actions */}
       <div className="flex flex-col sm:flex-row gap-4">
-          <button 
-            onClick={() => navigate("/")}
-            className="group bg-black text-white px-8 py-4 rounded-2xl flex items-center gap-3 font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:bg-zinc-800 transition-all cursor-pointer"
-          >
-            <Package size={16}/>
-            VIEW MY ORDERS
-          </button>
-          <button 
-            onClick={() => navigate("/")}
-            className="group bg-zinc-50 text-zinc-900 px-8 py-4 rounded-2xl flex items-center gap-3 font-black text-xs uppercase tracking-[0.2em] border border-zinc-100 hover:border-black transition-all cursor-pointer"
-          >
-            CONTINUE SHOPPING
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+        <button onClick={() => navigate("/my-orders")}
+          className="group bg-black text-white px-8 py-4 rounded-2xl flex items-center gap-3 font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:bg-zinc-800 transition-all cursor-pointer">
+          <Package size={15} /> View My Orders
+        </button>
+        <button onClick={() => navigate("/")}
+          className="group bg-zinc-50 text-zinc-900 px-8 py-4 rounded-2xl flex items-center gap-3 font-black text-xs uppercase tracking-[0.2em] border border-zinc-100 hover:border-black transition-all cursor-pointer">
+          Continue Shopping
+          <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+        </button>
       </div>
-
     </div>
   );
 }

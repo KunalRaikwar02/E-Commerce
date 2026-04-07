@@ -1,63 +1,61 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect, useRef } from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  // LocalStorage se cart load karo agar pehle se saved hai
   const [cartItems, setCartItems] = useState(() => {
-    const savedCart = localStorage.getItem("veltorn_cart");
-    return savedCart ? JSON.parse(savedCart) : [];
+    try {
+      const saved = localStorage.getItem("veltorn_cart");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
   });
-
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Jab bhi cart change ho, LocalStorage mein save karo
+  // Prevent double-save on initial render
+  const isFirstRender = useRef(true);
   useEffect(() => {
+    if (isFirstRender.current) { isFirstRender.current = false; return; }
     localStorage.setItem("veltorn_cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Add Item to Cart
+  // Add to cart — uses functional update to prevent stale closure double-add
   const addToCart = (product, selectedSize, quantity = 1) => {
     if (!selectedSize) {
       alert("Please select a size first!");
       return;
     }
-
-    setCartItems((prevItems) => {
-      // Check karo agar same product aur same size pehle se cart mein hai
-      const existingItemIndex = prevItems.findIndex(
+    setCartItems((prev) => {
+      const existingIndex = prev.findIndex(
         (item) => item.id === product.id && item.size === selectedSize
       );
-
-      if (existingItemIndex !== -1) {
-        // Agar hai, toh sirf quantity badhao
-        const updatedItems = [...prevItems];
-        updatedItems[existingItemIndex].quantity += quantity;
-        return updatedItems;
-      } else {
-        // Agar naya hai, toh add karo
-        return [
-          ...prevItems,
-          { ...product, size: selectedSize, quantity: quantity },
-        ];
+      if (existingIndex !== -1) {
+        const updated = [...prev];
+        updated[existingIndex] = {
+          ...updated[existingIndex],
+          quantity: updated[existingIndex].quantity + quantity,
+        };
+        return updated;
       }
+      return [...prev, { ...product, size: selectedSize, quantity }];
     });
-    // Cart drawer kholo add hone ke baad
     setIsCartOpen(true);
   };
 
-  // Remove Item
   const removeFromCart = (id, size) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => !(item.id === id && item.size === size))
+    setCartItems((prev) =>
+      prev.filter((item) => !(item.id === id && item.size === size))
     );
   };
 
-  // Update Quantity
   const updateQuantity = (id, size, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
+    if (newQuantity < 1) {
+      removeFromCart(id, size);
+      return;
+    }
+    setCartItems((prev) =>
+      prev.map((item) =>
         item.id === id && item.size === size
           ? { ...item, quantity: newQuantity }
           : item
@@ -65,10 +63,13 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // Calculations
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem("veltorn_cart");
+  };
+
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + parseInt(item.price) * item.quantity,
-    0
+    (sum, item) => sum + parseInt(item.price) * item.quantity, 0
   );
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -79,6 +80,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
+        clearCart,
         subtotal,
         totalItems,
         isCartOpen,
