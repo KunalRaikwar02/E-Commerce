@@ -597,7 +597,7 @@ function AnimeNavbar() {
     <>
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
 
-      <nav data-cursor="white" className="w-full fixed top-7.5 left-0 z-50 px-4 sm:px-6 md:px-10">
+      <nav data-cursor="white" className="w-full fixed top-7.5 mt-4 left-0 z-50 px-4 sm:px-6 md:px-10">
         <div ref={menuRef} className="w-full bg-black text-white border border-gray-800 rounded-3xl shadow-2xl px-4 sm:px-6 md:px-12 h-16 sm:h-18 md:h-20 flex items-center justify-between">
 
           <h1 onClick={() => navigate("/")} className="text-lg sm:text-xl font-bold tracking-widest cursor-pointer uppercase">
