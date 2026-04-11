@@ -337,7 +337,7 @@ function Accessories() {
   };
 
   return (
-    <section className="mt-26 sm:mt-30 md:mt-35 px-4 md:px-6 lg:px-10 relative overflow-hidden font-sans">
+    <section className="mt-26 sm:mt-30 md:mt-35 px-4 md:px-6 lg:px-10 relative overflow-hidden">
       <div className="flex justify-between items-center mb-3 py-4">
         <h2 className="text-black text-3xl md:text-6xl font-black uppercase tracking-[-3px] scale-y-[1.6] origin-left leading-none">
           ACCESSORIES

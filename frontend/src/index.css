@@ -54,3 +54,18 @@ html {
 
 /* ─── Scratch Card ────────────────────────────────── */
 canvas { display: block; }
+
+/* ─── SCROLL ANIMATIONS ───────────────────────────── */
+/* .scroll-section — JS se add hoti hai har section par */
+/* .scroll-visible  — JS se add hoti hai jab section screen mein aaye */
+
+.scroll-section {
+  opacity: 0;
+  transform: translateY(44px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.scroll-section.scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
