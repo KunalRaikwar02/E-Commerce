@@ -35,11 +35,11 @@ const CartDrawer = () => {
       {showAuth && <AuthModal onClose={handleAuthClose} />}
 
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] flex justify-end animate-in fade-in duration-200"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-200 flex justify-end animate-in fade-in duration-200"
         onClick={() => setIsCartOpen(false)}
       >
         <div
-          className="w-full sm:w-[420px] h-full bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300"
+          className="w-full sm:w-105 h-full bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
