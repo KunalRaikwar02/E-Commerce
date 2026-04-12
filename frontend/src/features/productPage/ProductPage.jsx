@@ -210,7 +210,7 @@ const handleAddToCart = () => {
           <div className="w-full lg:w-[45%] flex flex-col gap-5 lg:pt-4">
  
             {/* Product Name */}
-            <h1 style={{ color: PURPLE }} className="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight tracking-tight">
+            <h1 style={{ color: PURPLE }} className="text-2xl sm:text-3xl md:text-4xl font-black uppercase leading-tight tracking-tight mb-3">
               {product.name}
             </h1>
  
