@@ -51,8 +51,8 @@ function FeaturedCollection() {
           <span className="text-xs sm:text-sm text-gray-400">[featured]</span>
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-black leading-snug">
             LIMITED EDITION MERCH
-            <br />FROM THE AMON
-            <br />AMARTH RAGNAROK
+            <br />FROM THE VELTORN
+            <br />CLOTHING GROUP
             <br />COLLECTION.
           </h2>
         </div>
@@ -102,7 +102,7 @@ function FeaturedCollection() {
       </div>
 
       <div className="mt-16 sm:mt-20">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-none">AMON AMARTH</h1>
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-none">VELTORN CLOTHING</h1>
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-none">RAGNAROK</h1>
       </div>
     </section>

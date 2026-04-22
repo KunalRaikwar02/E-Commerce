@@ -734,8 +734,8 @@ export default function HeroVideo() {
       </div>
 
       <div className="absolute bottom-10 left-8 z-20 text-[10px] tracking-[0.2em] opacity-60">
-        <p className="font-bold text-white uppercase tracking-widest leading-loose">Hobie Music Group</p>
-        <p>California / 2026</p>
+        <p className="font-bold text-white uppercase tracking-widest leading-loose">Veltorn Clothing Group</p>
+        <p>India / 2026</p>
       </div>
 
       <div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-black to-transparent pointer-events-none z-10" />

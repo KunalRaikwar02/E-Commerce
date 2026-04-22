@@ -34,7 +34,7 @@ function AnimeFooter() {
         <div className="flex flex-col sm:flex-row gap-10 sm:gap-20 lg:gap-45 pl-6 sm:pl-10 lg:pl-25">
           <div>
             <h4 className="text-xs mb-6 tracking-widest font-bold opacity-80">CATALOG</h4>
-            <ul className="text-xs font-bold scale-y-150 space-y-2">
+            <ul className="text-xs font-bold scale-y-150">
               <li onClick={() => handleFilterClick("catalog", "Shirt")} className="cursor-pointer hover:text-gray-300 transition">SHIRT</li>
               <li onClick={() => handleFilterClick("catalog", "T-Shirt")} className="cursor-pointer hover:text-gray-300 transition">TSHIRT</li>
               <li onClick={() => handleFilterClick("catalog", "Jeans")} className="cursor-pointer hover:text-gray-300 transition">JEANS</li>
@@ -43,7 +43,7 @@ function AnimeFooter() {
           </div>
           <div>
             <h4 className="text-xs mb-6 tracking-widest font-bold opacity-80">ANIME COLLECTION</h4>
-            <ul className="text-xs font-bold scale-y-150 space-y-2">
+            <ul className="text-xs font-bold scale-y-150">
               <li onClick={() => handleFilterClick("anime", "Naruto")} className="cursor-pointer hover:text-gray-300 transition">NARUTO</li>
               <li onClick={() => handleFilterClick("anime", "Solo Leveling")} className="cursor-pointer hover:text-gray-300 transition">SOLO LEVELING</li>
               <li onClick={() => handleFilterClick("anime", "Demon Slayer")} className="cursor-pointer hover:text-gray-300 transition">DEMON SLAYER</li>
@@ -52,7 +52,7 @@ function AnimeFooter() {
           </div>
           <div>
             <h4 className="text-xs mb-6 tracking-widest font-bold opacity-80">SOCIAL</h4>
-            <ul className="text-xs font-bold scale-y-150 space-y-2">
+            <ul className="text-xs font-bold scale-y-150 space-y-0.5">
               <li onClick={() => window.open("https://www.instagram.com/veltornclothes", "_blank")} className="cursor-pointer hover:text-gray-300 transition">INSTAGRAM</li>
               <li className="cursor-pointer hover:text-gray-300 transition">FACEBOOK</li>
               <li className="cursor-pointer hover:text-gray-300 transition">YOUTUBE</li>

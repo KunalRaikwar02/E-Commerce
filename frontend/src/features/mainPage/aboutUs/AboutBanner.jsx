@@ -27,7 +27,7 @@ function AboutBanner() {
 
     {/* Main Heading - Sizes increased by one level */}
     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-[-1px] scale-y-[1.3] sm:scale-y-150 mb-2">
-      THIS IS <span className="text-yellow-500">HOBIE MUSIC</span>
+      THIS IS <span className="text-yellow-500">VELTORN GROUP</span>
     </h2>
 
     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-[-1px] scale-y-[1.3] sm:scale-y-150 mb-2">

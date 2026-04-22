@@ -21,7 +21,7 @@ const LoadingScreen = ({ onDone }) => {
         setTransitionOut(false);
         setPhase("loading");
       }, 500);
-    }, 3500);
+    }, 2500);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
