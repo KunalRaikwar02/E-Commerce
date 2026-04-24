@@ -7,6 +7,6 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/admin-register", adminRegister);
 router.get("/me", protect, getMe);
-router.put("/profile", protect, updateProfile);  // NEW — save profile
+router.put("/profile", protect, updateProfile); 
 
 module.exports = router;

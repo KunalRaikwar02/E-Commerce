@@ -21,14 +21,10 @@ export default function MouseTrail() {
 
       const target = e.target;
 
-      // 1. Check if it's the Hero Video or Navbar
       const isHeroOrNav = target.closest('[data-cursor="white"]') || target.closest("nav");
-      
-      // 2. EXCLUSION: Agar mouse "top-banner" ya "announcement-bar" par hai, toh BLACK rakho
-      // Yahan tum apne banner ki class check kar lena (e.g., .top-banner)
+
       const isOverTopBanner = target.closest(".top-banner") || target.closest("[class*='banner']");
 
-      // Final Decision: Hero/Nav ho LEKIN top banner na ho
       if (isHeroOrNav && !isOverTopBanner) {
         setIsWhite(true);
       } else {

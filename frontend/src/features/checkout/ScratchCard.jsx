@@ -77,7 +77,7 @@ export default function ScratchCard({ onCouponRevealed, onClose }) {
       onCouponRevealed?.(coupon);
 
       // Save coupon to localStorage for auto-fill in checkout
-      // Per-order basis — no "used" check, always save latest coupon
+      // Per order basis no "used" check, always save latest coupon
       localStorage.setItem("veltorn_coupon", coupon);
     }
   };

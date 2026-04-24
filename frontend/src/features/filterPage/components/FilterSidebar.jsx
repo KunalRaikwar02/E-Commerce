@@ -4,7 +4,7 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 const FilterSidebar = ({ 
   activeFilter, setActiveFilter, activeAnime, setActiveAnime, 
   selectedPriceRange, setSelectedPriceRange, selectedSize, setSelectedSize, 
-  handleReset, setCurrentPage, counts // 'counts' prop yahan se aayega
+  handleReset, setCurrentPage, counts 
 }) => {
   const [openSection, setOpenSection] = useState({ productType: true, anime: true, price: true, size: true });
 

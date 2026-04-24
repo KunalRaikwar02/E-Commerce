@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    // Guest checkout ke liye bhi kaam karega
+
     guestInfo: {
       name: String,
       email: String,
@@ -13,8 +13,8 @@ const orderSchema = new mongoose.Schema(
       {
         product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         name: String,       // Snapshot at time of order
-        price: Number,      // Snapshot at time of order
-        img: String,        // Snapshot at time of order
+        price: Number,      
+        img: String,        
         size: String,
         quantity: Number,
       },
@@ -46,7 +46,7 @@ const orderSchema = new mongoose.Schema(
     gst: Number,
     shippingCharge: Number,
     total: Number,
-    orderId: { type: String, unique: true }, // e.g. VEL-4091A
+    orderId: { type: String, unique: true },
   },
   { timestamps: true }
 );

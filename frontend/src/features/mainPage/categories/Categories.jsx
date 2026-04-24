@@ -30,7 +30,6 @@ function Categories() {
           <div
             key={cat.name}
             onClick={() => {
-              // Scroll to top ensure karne ke liye aur state pass karne ke liye
               window.scrollTo(0, 0);
               navigate("/collections/all", { state: { filter: cat.filterValue } });
             }}

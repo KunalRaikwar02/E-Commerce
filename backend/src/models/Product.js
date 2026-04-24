@@ -24,9 +24,7 @@ const productSchema = new mongoose.Schema(
     animeTag: {
       type: String,
       default: null,
-      // Naruto, Solo Leveling, Demon Slayer, One Piece etc.
     },
-    // ── FIX: No enum on sizes — accept any string (S, M, L, XL, XXL, 28, 30, 32, 34, Free Size, etc.)
     sizes: {
       type: [String],
       default: ["S", "M", "L", "XL", "XXL"],

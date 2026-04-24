@@ -4,7 +4,7 @@ const SupportMessage = require("../models/SupportMessage");
 const { protect } = require("../middleware/auth.middleware");
 const { adminOnly } = require("../middleware/admin.middleware");
 
-// POST /api/support — user sends message (auth required)
+// POST /api/support — user sends message
 router.post("/", protect, async (req, res) => {
   try {
     const { subject, message } = req.body;

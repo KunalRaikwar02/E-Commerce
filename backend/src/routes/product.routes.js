@@ -10,13 +10,13 @@ const {
 } = require("../controllers/product.controller");
 const { protect } = require("../middleware/auth.middleware");
 const { adminOnly } = require("../middleware/admin.middleware");
-const { upload } = require("../config/imagekit"); // 'upload' use karo, 'uploadProductImage' nahi
+const { upload } = require("../config/imagekit"); 
 
-// ─── Public Routes ───────────────────────────────────────────
+// Public Routes
 router.get("/", getAllProducts);
 router.get("/:id", getProductById);
 
-// ─── Admin Only Routes ────────────────────────────────────────
+// Admin Only Routes
 router.post(
   "/",
   protect,

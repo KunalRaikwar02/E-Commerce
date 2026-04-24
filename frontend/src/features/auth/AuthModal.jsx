@@ -10,7 +10,7 @@ export default function AuthModal({ onClose, defaultMode = "login" }) {
   const [error, setError] = useState("");
   const { login, register, loading } = useAuth();
 
-  // Pre-fill email from footer signup
+  // Pre fill email from footer signup
   useEffect(() => {
     const prefill = sessionStorage.getItem("veltorn_prefill_email");
     if (prefill) {

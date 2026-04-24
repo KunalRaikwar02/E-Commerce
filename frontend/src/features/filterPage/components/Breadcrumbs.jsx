@@ -7,7 +7,7 @@ const Breadcrumbs = ({ activeFilter, activeAnime, resetFilters }) => {
 
   const handleShopAllClick = () => {
     if (resetFilters) {
-      resetFilters(); // Ye function saare active filters (T-shirt, Anime etc.) ko "All" kar dega
+      resetFilters(); 
     }
     navigate("/collections/all");
   };

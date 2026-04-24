@@ -29,12 +29,10 @@ const uploadImageToImageKit = async (file) => {
   const token = localStorage.getItem("veltorn_token");
   const fd = new FormData();
   fd.append("images", file);
-  // We upload via a dummy product update — instead use a dedicated endpoint
-  // For now we use the pageProducts endpoint with a custom payload approach
-  // Actually: upload as base64 and save URL directly
+
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = (e) => resolve(e.target.result); // base64 data URL
+    reader.onload = (e) => resolve(e.target.result);
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
@@ -96,7 +94,7 @@ function Sidebar({ active, setActive, onLogout, admin, unreadCount }) {
   );
 }
 
-// ─── Image Banner Upload Panel ────────────────────────────────
+// Image Banner Upload Panel
 function ImageBannerSection({ sectionKey, label, desc, currentImg, onSave }) {
   const [urlInput, setUrlInput] = useState(currentImg || "");
   const [preview, setPreview] = useState(currentImg || "");
@@ -115,15 +113,12 @@ function ImageBannerSection({ sectionKey, label, desc, currentImg, onSave }) {
     if (!file) return;
     setUploading(true);
     try {
-      // Upload to backend via a temp product image approach
-      // We'll use FormData to upload to our own /api/support-upload or
-      // simply convert to base64 for preview and send URL via pageProducts
+     
       const token = localStorage.getItem("veltorn_token");
       const fd = new FormData();
       fd.append("images", file);
       // Create a temporary product to get ImageKit URL
-      // Better: use dedicated upload endpoint
-      // For now: upload as FormData to backend upload route
+
       const res = await fetch(`${BASE_URL}/upload-image`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
@@ -228,7 +223,7 @@ function ImageBannerSection({ sectionKey, label, desc, currentImg, onSave }) {
   );
 }
 
-// ─── Main Page Products ───────────────────────────────────────
+// Main Page Products
 function MainPageProducts() {
   const [allProducts, setAllProducts] = useState([]);
   const [sectionData, setSectionData] = useState({});
@@ -279,7 +274,7 @@ function MainPageProducts() {
     }
   };
 
-  // Save image-type section — no productId, just customImage
+  // Save image-type section
   const handleSaveImage = async (imageUrl) => {
     await pageProductsAPI.setSection(activeSection, [{
       slot: 0,

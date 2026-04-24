@@ -13,14 +13,14 @@ export const CartProvider = ({ children }) => {
   });
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Prevent double-save on initial render
+  // Prevent double save on initial render
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (isFirstRender.current) { isFirstRender.current = false; return; }
     localStorage.setItem("veltorn_cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Add to cart — uses functional update to prevent stale closure double-add
+  // Add to cart
   const addToCart = (product, selectedSize, quantity = 1) => {
     if (!selectedSize) {
       alert("Please select a size first!");

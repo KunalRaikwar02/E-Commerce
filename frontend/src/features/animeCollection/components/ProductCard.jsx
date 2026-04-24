@@ -5,7 +5,6 @@ const ProductCard = ({ product }) => (
   <div className="min-w-70 md:min-w-85 transition-all duration-500 ease-in-out hover:min-w-115 md:hover:min-w-130 group cursor-pointer snap-start">
     <div className="relative overflow-hidden bg-[#f9f9f9] h-95 md:h-120 w-full rounded-2xl shadow-sm transition-all duration-500 border border-zinc-100">
       
-      {/* Badge (Har Product pe dikhega jaisa tumhare original code mein tha) */}
       <div className="absolute top-4 left-4 z-20">
         <span className="bg-green-600 text-white text-[11px] px-2.5 py-1 rounded-full font-extrabold shadow-lg flex items-center justify-center leading-none uppercase tracking-widest">
           NEW

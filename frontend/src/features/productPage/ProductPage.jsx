@@ -3,11 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Home, ChevronRight, Ruler, Search, Globe, User, ShoppingBag, X } from "lucide-react";
 
 
-import { useCart } from "../cart/CartContext";   /* add to cart neeche se agar hataya toh isko bhi hatao */
+import { useCart } from "../cart/CartContext";
  
 const PURPLE = "#581a90";
- 
-// ===================== ACCORDION =====================
+
 function AccordionItem({ title, children }) {
   const [open, setOpen] = useState(false);
   return (
@@ -30,7 +29,7 @@ function AccordionItem({ title, children }) {
   );
 }
  
-// ===================== SIZE GUIDE MODAL =====================
+// SIZE GUIDE MODAL 
 function SizeGuideModal({ onClose }) {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-200 flex items-center justify-center px-4">
@@ -76,7 +75,7 @@ function SizeGuideModal({ onClose }) {
   );
 }
  
-// ===================== PRODUCT DESCRIPTIONS =====================
+// PRODUCT DESCRIPTIONS
 const getDescription = (product) => {
   const name = product?.name?.toLowerCase() || "";
   const collection = product?.collection?.toLowerCase() || "";
@@ -99,7 +98,7 @@ const getDescription = (product) => {
   return "A premium piece from the VELTORN collection — designed for those who refuse to blend in. Made from high-quality materials with an attention to detail that sets it apart. Wear it loud, wear it proud.";
 };
  
-// ===================== MAIN PRODUCT PAGE =====================
+// MAIN PRODUCT PAGE
 export default function ProductPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -126,39 +125,22 @@ export default function ProductPage() {
   const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
  
-  // const handleAddToCart = () => {
-  //   if (!selectedSize) {
-  //     alert("Please select a size first!");
-  //     return;
-  //   }
-    
-  //   setAddedToCart(true);
-  //   setTimeout(() => setAddedToCart(false), 2500);
-  // };
-
-
-
-// add to cart hatqane ke liye isko hatakar uper wala rehnde do ---------------------------------------------------------------------------
 const handleAddToCart = () => {
     if (!selectedSize) {
       alert("Please select a size first!");
       return;
     }
 
-    // Actual cart context function call
     addToCart(product, selectedSize, quantity);
     
     setAddedToCart(true);
-    // 1 second baad drawer khol do
     setTimeout(() => {
       setAddedToCart(false);
       setIsCartOpen(true);
     }, 1000);
   };
-// ----------------------------------------------------------------------------------------
 
 
- 
   return (
     <div className="min-h-screen bg-white mt-7">
       {/* Size Guide Modal */}
@@ -195,7 +177,7 @@ const handleAddToCart = () => {
         {/* MAIN LAYOUT */}
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
  
-          {/* ===== LEFT: MAIN IMAGE ===== */}
+          {/* LEFT: MAIN IMAGE */}
           <div className="w-full lg:w-[55%]">
             <div className="w-full bg-gray-50 rounded-2xl overflow-hidden aspect-square flex items-center justify-center border border-gray-100">
               <img
@@ -206,7 +188,7 @@ const handleAddToCart = () => {
             </div>
           </div>
  
-          {/* ===== RIGHT: DETAILS ===== */}
+          {/* RIGHT: DETAILS */}
           <div className="w-full lg:w-[45%] flex flex-col gap-5 lg:pt-4">
  
             {/* Product Name */}
@@ -214,7 +196,7 @@ const handleAddToCart = () => {
               {product.name}
             </h1>
  
-            {/* Price — RIGHT aligned */}
+            {/* Price */}
             <div className="flex items-baseline justify-end gap-2">
               <span style={{ color: PURPLE }} className="text-2xl font-black">₹{product.price}</span>
               <span style={{ color: PURPLE }} className="text-2xl font-black">INR</span>
@@ -300,7 +282,6 @@ const handleAddToCart = () => {
  
             {/* Quantity + Add to Cart */}
             <div className="flex items-center gap-3 mt-2">
-              {/* Quantity — using innerHTML style to guarantee − shows */}
               <div className="flex items-center border-2 border-gray-200 rounded-xl overflow-hidden bg-white">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}

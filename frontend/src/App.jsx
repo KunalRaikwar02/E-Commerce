@@ -45,7 +45,7 @@ const LandingPage = () => (
   </>
 );
 
-// ─── Scroll Animation — sirf ek baar, mount par ───────────────
+// Scroll Animation
 function useScrollAnimation() {
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,7 +54,6 @@ function useScrollAnimation() {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("scroll-visible");
-              // Ek baar visible ho gaya — hata do observer se
               observer.unobserve(entry.target);
             }
           });
@@ -64,23 +63,19 @@ function useScrollAnimation() {
 
       document.querySelectorAll("section").forEach((sec, i) => {
         sec.classList.add("scroll-section");
-        // Pehli section (HeroVideo) — turant visible, no animation
         if (i === 0) {
           sec.classList.add("scroll-visible");
         } else {
           observer.observe(sec);
         }
       });
-
-      // Observer ko disconnect mat karo — woh tab tak observe karta hai
-      // jab tak saari sections visible nahi ho jaati
     }, 150);
 
     return () => clearTimeout(timer);
-  }, []); // ← empty array — sirf ek baar, mount par
+  }, []); 
 }
 
-// ─── Scroll Manager ───────────────────────────────────────────
+// Scroll Manager
 function ScrollManager() {
   const location = useLocation();
   const navType = useNavigationType();
@@ -90,7 +85,7 @@ function ScrollManager() {
   return null;
 }
 
-// ─── Page Fade Transition ─────────────────────────────────────
+// Page Fade Transition
 function PageTransition({ children }) {
   const location = useLocation();
   const [show, setShow] = useState(true);
@@ -106,12 +101,11 @@ function PageTransition({ children }) {
   );
 }
 
-// ─── Main Content ─────────────────────────────────────────────
+// Main Content
 function MainContent() {
   const location = useLocation();
   const path = location.pathname;
 
-  // Sirf main page "/" par scroll animation
   useScrollAnimation();
 
   const isAnimePage = path === "/anime-collection";
@@ -155,7 +149,7 @@ function MainContent() {
   );
 }
 
-// ─── App ──────────────────────────────────────────────────────
+// App 
 function App() {
   const [loaded, setLoaded] = useState(() => {
     return sessionStorage.getItem("veltorn_loaded") === "true";

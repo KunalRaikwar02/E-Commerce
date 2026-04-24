@@ -1,13 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
-import { ArrowRight } from "lucide-react"; // Icon import kiya
+import { ArrowRight } from "lucide-react";
 
 function CollectionBanner() {
   const navigate = useNavigate();
 
   const handleExplore = () => {
-    window.scrollTo(0, 0); // Naye page par top se start ho
-    navigate("/anime-collection"); // Naya route jo tumne banaya hai
+    window.scrollTo(0, 0); 
+    navigate("/anime-collection");
   };
 
   return (

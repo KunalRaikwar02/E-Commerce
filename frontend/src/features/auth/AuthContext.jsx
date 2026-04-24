@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  // Update profile — saves to backend AND local state
+  // Update profile
   const updateProfile = async (profileData) => {
     try {
       const data = await authAPI.updateProfile(profileData);

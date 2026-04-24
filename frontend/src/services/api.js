@@ -15,7 +15,7 @@ const apiFetch = async (url, options = {}) => {
   return data;
 };
 
-// ── AUTH ──────────────────────────────────────────────────────
+// AUTH 
 export const authAPI = {
   register: (body) => apiFetch("/auth/register", {
     method: "POST",
@@ -35,7 +35,7 @@ export const authAPI = {
   }),
 };
 
-// ── PRODUCTS ──────────────────────────────────────────────────
+// PRODUCTS 
 export const productAPI = {
   getAll: (params = {}) => {
     const query = new URLSearchParams(params).toString();
@@ -63,7 +63,7 @@ export const productAPI = {
   }),
 };
 
-// ── PAGE PRODUCTS ─────────────────────────────────────────────
+// PAGE PRODUCTS
 export const pageProductsAPI = {
   getSection: (section) => apiFetch(`/page-products/${section}`),
   setSection: (section, products) => apiFetch(`/page-products/${section}`, {
@@ -77,7 +77,7 @@ export const pageProductsAPI = {
   }),
 };
 
-// ── ORDERS ────────────────────────────────────────────────────
+// ORDERS 
 export const orderAPI = {
   place: (body) => apiFetch("/orders", {
     method: "POST",
@@ -88,7 +88,7 @@ export const orderAPI = {
   getById: (id) => apiFetch(`/orders/${id}`, { headers: authHeaders() }),
 };
 
-// ── ADMIN ─────────────────────────────────────────────────────
+// ADMIN
 export const adminAPI = {
   getDashboard: () => apiFetch("/admin/dashboard", { headers: authHeaders() }),
   getAllOrders: (params = {}) => {

@@ -16,16 +16,15 @@ function AboutBanner() {
         </div>
 
         {/* RIGHT CONTENT */}
-       {/* Parent div mein 'items-center' add kiya aur responsive text-align hata diya */}
 <div className="flex flex-col items-center justify-center h-full text-center pr-25">
   
   <div className="inline-block">
-    {/* Small Label - Slightly increased to text-sm */}
+    {/* Small Label */}
     <p className="text-sm sm:text-base text-gray-400 mb-6 tracking-widest">
       [about us]
     </p>
 
-    {/* Main Heading - Sizes increased by one level */}
+    {/* Main Heading */}
     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-[-1px] scale-y-[1.3] sm:scale-y-150 mb-2">
       THIS IS <span className="text-yellow-500">VELTORN GROUP</span>
     </h2>
@@ -48,7 +47,7 @@ function AboutBanner() {
     />
   </div>
 
-  {/* Description - Text size changed to sm:text-lg */}
+  {/* Description */}
   <p className="mt-10 text-gray-600 leading-relaxed text-base sm:text-lg max-w-162.5 mx-auto tracking-tight text-center px-4">
     We are a brand built on passion, energy, and fearless expression.
     Our music and merch represent those who live loud, stay proud, and

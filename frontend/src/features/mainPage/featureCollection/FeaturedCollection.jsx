@@ -57,7 +57,7 @@ function FeaturedCollection() {
           </h2>
         </div>
 
-        {/* SMALL CARD — slot 0 */}
+        {/* SMALL CARD */}
         <div onClick={() => handleClick(smallCard)} className="md:col-span-1 cursor-pointer group">
           <div className="relative h-75 sm:h-95 md:h-100 flex items-center justify-center overflow-hidden bg-gray-100 rounded-lg transition-all duration-300 group-hover:shadow-xl">
             <img src={smallCard.image} alt={smallCard.name}
@@ -78,7 +78,7 @@ function FeaturedCollection() {
           </div>
         </div>
 
-        {/* LARGE CARD — slot 1 */}
+        {/* LARGE CARD */}
         <div onClick={() => handleClick(largeCard)} className="md:col-span-2 cursor-pointer group">
           <div className="relative h-87.5 sm:h-112.5 md:h-150 lg:h-162.5 flex items-center justify-center overflow-hidden bg-gray-100 rounded-lg transition-all duration-300 group-hover:shadow-xl">
             <img src={largeCard.image} alt={largeCard.name}

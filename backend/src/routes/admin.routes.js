@@ -4,7 +4,6 @@ const { getDashboard, getAllOrders, updateOrderStatus, getAllUsers } = require("
 const { protect } = require("../middleware/auth.middleware");
 const { adminOnly } = require("../middleware/admin.middleware");
 
-// Sab routes admin only
 router.use(protect, adminOnly);
 
 router.get("/dashboard", getDashboard);

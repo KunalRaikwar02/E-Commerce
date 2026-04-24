@@ -16,7 +16,7 @@ const createRazorpayOrder = async (req, res) => {
     if (!amount) return res.status(400).json({ message: "Amount is required" });
 
     const options = {
-      amount: Math.round(amount * 100), // Razorpay uses paise
+      amount: Math.round(amount * 100),
       currency,
       receipt: orderId || `rcpt_${Date.now()}`,
     };
@@ -43,7 +43,7 @@ const verifyPayment = async (req, res) => {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
-      internalOrderId, // Our MongoDB order ID
+      internalOrderId,
     } = req.body;
 
     // Verify signature

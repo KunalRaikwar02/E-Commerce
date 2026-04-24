@@ -26,30 +26,21 @@ const deleteFromImageKit = async (fileId) => {
   }
 };
 
-// ============================================================
 // @GET /api/products
-//
-// FIX: jab category param aata hai tabhi filter lagao
-//      agar category param nahi aaya = sab products dikho (Shop All)
-//      agar category="All" aaya = bhi sab products dikho
-// ============================================================
 const getAllProducts = async (req, res) => {
   try {
     const { category, anime, badge, search, sort, page = 1, limit = 12 } = req.query;
 
-    // Sirf active products
     const filter = { isActive: true };
 
-    // Category filter — ONLY when category param exists AND is not "All"
     if (category && category.trim() !== "" && category.trim() !== "All") {
       filter.category = category.trim();
     }
 
     // Anime filter — when anime param exists, filter by animeTag AND force category=Anime
-    // This ensures Naruto products don't show in Shirt/Cap/etc.
     if (anime && anime.trim() !== "") {
       filter.animeTag = anime.trim();
-      filter.category = "Anime"; // Anime products exclusively
+      filter.category = "Anime";
     }
 
     if (badge) filter.badge = badge;
@@ -88,9 +79,7 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-// ============================================================
 // @GET /api/products/:id
-// ============================================================
 const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -101,9 +90,7 @@ const getProductById = async (req, res) => {
   }
 };
 
-// ============================================================
 // @POST /api/products — Admin only
-// ============================================================
 const createProduct = async (req, res) => {
   try {
     const { name, price, description, category, animeTag, sizes, badge, brand, stock } = req.body;
@@ -140,9 +127,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-// ============================================================
 // @PUT /api/products/:id — Admin only
-// ============================================================
 const updateProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -176,9 +161,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
-// ============================================================
 // @DELETE /api/products/:id — Admin only
-// ============================================================
 const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -197,9 +180,7 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-// ============================================================
 // @DELETE /api/products/:id/image — Remove single image (Admin)
-// ============================================================
 const deleteProductImage = async (req, res) => {
   try {
     const { imageUrl, fileId } = req.body;

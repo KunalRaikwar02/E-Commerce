@@ -18,7 +18,6 @@ export default function OrderSuccess() {
     const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     window.addEventListener("resize", handleResize);
 
-    // Har order pe scratch card aaye — no "used" check
     // Slight delay for nice entrance effect
     setTimeout(() => setShowScratch(true), 800);
 

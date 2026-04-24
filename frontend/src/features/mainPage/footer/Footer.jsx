@@ -15,7 +15,6 @@ function Footer() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email) return;
-    // Navigate to a register-like experience with pre-filled email
     // Store email in sessionStorage for AuthModal to pick up
     sessionStorage.setItem("veltorn_prefill_email", email);
     setShowSuccess(true);

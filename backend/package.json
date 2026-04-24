@@ -2,7 +2,7 @@
   "name": "veltorn-backend",
   "version": "1.0.0",
   "description": "Veltorn E-Commerce Backend",
-  "main": "src/app.js",
+  "main": "server.js",
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"

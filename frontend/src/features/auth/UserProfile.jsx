@@ -28,7 +28,7 @@ export default function UserProfile() {
     reader.readAsDataURL(file);
   };
 
-  // ── Remove avatar ─────────────────────────────────────────
+  // Remove avatar
   const handleRemoveAvatar = () => {
     setAvatarPreview(null);
     if (fileRef.current) fileRef.current.value = "";
@@ -103,7 +103,7 @@ export default function UserProfile() {
             </span>
           </div>
 
-          {/* Remove avatar button — only visible when avatar is set */}
+          {/* Remove avatar button */}
           {avatarPreview && (
             <button
               onClick={handleRemoveAvatar}

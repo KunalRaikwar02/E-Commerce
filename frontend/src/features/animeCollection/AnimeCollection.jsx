@@ -86,7 +86,7 @@ const AnimeCollection = () => {
         <img src="/assets/images/collectionimg.png" alt="Banner" className="w-full h-[40vh] md:h-[70vh] object-cover object-top" />
       </div>
 
-      {/* TOP PICKS — same layout as original */}
+      {/* TOP PICKS*/}
       <div className="px-4 md:px-6 lg:px-10 mt-16">
         <div className="flex justify-between items-center mb-3 py-4">
           <h2 className="text-[#581a90] text-3xl md:text-6xl font-black uppercase tracking-[-3px] scale-y-[1.6] origin-left leading-none">TOP PICKS FOR YOU</h2>
@@ -114,7 +114,7 @@ const AnimeCollection = () => {
         </div>
       </div>
 
-      {/* ANIME COLLECTION — same layout, category images from backend if set */}
+      {/* ANIME COLLECTION*/}
       <div className="px-4 md:px-6 lg:px-10 mt-26">
         <div className="flex justify-between items-center mb-12 py-4">
           <h2 className="text-[#581a90] text-3xl md:text-6xl font-black uppercase tracking-[-3px] scale-y-[1.6] origin-left leading-none">ANIME COLLECTION</h2>

@@ -10,9 +10,9 @@ const LoadingScreen = ({ onDone }) => {
   const [zoomOut, setZoomOut] = useState(false);
 
   useEffect(() => {
-    // "welcome to" — 400ms baad aaye, smooth
+    // "welcome to" — 400ms
     const t1 = setTimeout(() => setShowWelcome(true), 400);
-    // VELTORN — 1100ms baad, clearly baad mein
+    // VELTORN — 1100ms
     const t2 = setTimeout(() => setShowVeltorn(true), 1100);
     // phase switch — 3.5s
     const t3 = setTimeout(() => {

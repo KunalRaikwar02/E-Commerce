@@ -47,7 +47,7 @@ export default function HeroVideo() {
     navigate(`/product/${shirt.id}`, { state: { product: shirt } });
   };
 
-  // Particle animation — exact same as original
+  // Particle animation
   useEffect(() => {
     const container = particleContainerRef.current;
     if (!container) return;

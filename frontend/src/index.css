@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
-/* ─── Marquee ─────────────────────────────────────── */
+/* Marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to   { transform: translateX(-50%); }
 }
 .animate-marquee {
   animation: marquee 40s linear infinite;
 }
 
-/* ─── Custom Font ─────────────────────────────────── */
+/* Custom Font */
 @font-face {
   font-family: "MyCustomFont";
   src: url("./assets/fonts/Futura-Bold.ttf") format("truetype");
@@ -20,52 +20,112 @@ body {
   font-family: "MyCustomFont", sans-serif;
 }
 
-/* ─── Smooth Scroll ───────────────────────────────── */
+
+/* Smooth Scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* ─── Scrollbar Hide ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #581a90 0%, #7c3aed 50%, #581a90 100%);
+  border-radius: 100px;
+  border: none;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6d1fb3 0%, #9333ea 50%, #6d1fb3 100%);
+}
+::-webkit-scrollbar-corner {
+  background: #0a0a0a;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #581a90 #0a0a0a;
+}
+
+/* Scrollbar Hide */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ─── Slide Animations ────────────────────────────── */
+/* Slide Animations */
 @keyframes slideInRight {
   from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(0);    opacity: 1; }
 }
 @keyframes slideInLeft {
   from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(0);     opacity: 1; }
 }
 .animate-slideInRight { animation: slideInRight 0.5s ease forwards; }
-.animate-slideInLeft { animation: slideInLeft 0.5s ease forwards; }
+.animate-slideInLeft  { animation: slideInLeft  0.5s ease forwards; }
 
-/* ─── Page transition ─────────────────────────────── */
+/* Page transition */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .page-enter {
   animation: fadeUp 0.3s ease forwards;
 }
 
-/* ─── Scratch Card ────────────────────────────────── */
+/* Scratch Card */
 canvas { display: block; }
 
-/* ─── SCROLL ANIMATIONS ───────────────────────────── */
-/* .scroll-section — JS se add hoti hai har section par */
-/* .scroll-visible  — JS se add hoti hai jab section screen mein aaye */
-
+/* SCROLL ANIMATIONS */
 .scroll-section {
   opacity: 0;
   transform: translateY(44px);
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
-
 .scroll-section.scroll-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Admin Panel */
+.admin-layout {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+.admin-sidebar {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+}
+.admin-main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Admin scrollbar */
+.admin-sidebar::-webkit-scrollbar,
+.admin-main::-webkit-scrollbar {
+  width: 4px;
+}
+.admin-sidebar::-webkit-scrollbar-track,
+.admin-main::-webkit-scrollbar-track {
+  background: #000;
+}
+.admin-sidebar::-webkit-scrollbar-thumb,
+.admin-main::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #581a90, #9333ea);
+  border-radius: 100px;
+}
+.admin-sidebar::-webkit-scrollbar-thumb:hover,
+.admin-main::-webkit-scrollbar-thumb:hover {
+  background: #9333ea;
 }

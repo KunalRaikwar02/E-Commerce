@@ -50,19 +50,13 @@ const FilterPage = () => {
     setLoading(true);
     try {
       const params = { page: currentPage, limit: itemsPerPage };
-
-      // ── KEY FIX ───────────────────────────────────────────────
-      // "All" = NO category param → backend returns ALL products
-      // Specific category = send only that category param
-      // Anime filter = send anime tag (category param auto-set to Anime in backend)
+  
       if (activeAnime) {
         params.anime = activeAnime;
         // Don't send category for anime — backend handles it
       } else if (activeFilter && activeFilter !== "All") {
         params.category = activeFilter;
-        // Only send category if NOT "All"
       }
-      // If activeFilter === "All" → send NO category → all products shown
 
       if (searchQuery) params.search = searchQuery;
       if (sortOption === "PRICE: LOW TO HIGH") params.sort = "price_asc";
@@ -71,7 +65,7 @@ const FilterPage = () => {
       const data = await productAPI.getAll(params);
       let filtered = data.products || [];
 
-      // Client-side size + price filter
+      // Client side size + price filter
       if (selectedSize) filtered = filtered.filter(p => p.sizes?.includes(selectedSize));
       if (selectedPriceRange) {
         filtered = filtered.filter(p => {

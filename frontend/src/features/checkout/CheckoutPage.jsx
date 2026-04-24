@@ -31,9 +31,6 @@ export default function CheckoutPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // Yeh ref track karega ki order place ho gaya
-  // clearCart ke baad cartItems.length === 0 ho jaata hai
-  // bina is flag ke useEffect "/" par redirect kar deta hai
   const orderPlacedRef = useRef(false);
 
   const [fullName, setFullName] = useState(user?.name || "");
