@@ -1,7 +1,6 @@
 const Order = require("../models/Order");
 const mongoose = require("mongoose");
 
-// Helper — check karo ki value valid MongoDB ObjectId hai ya nahi
 const isValidObjectId = (id) => {
   if (!id) return false;
   return mongoose.Types.ObjectId.isValid(id);
@@ -54,7 +53,7 @@ const placeOrder = async (req, res) => {
   }
 };
 
-// @GET /api/orders/my — Logged-in user ke orders
+// @GET /api/orders/my — Logged-in
 const getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({ user: req.user._id })
