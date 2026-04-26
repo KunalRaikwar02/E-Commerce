@@ -27,11 +27,11 @@ app.use(cors({
   credentials: true,
 }));
 
-/* Body Parsers*/
+/* Body Parsers */
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-/*API Routes*/
+/* API Routes */
 app.use("/api/auth",          require("./src/routes/auth.routes"));
 app.use("/api/products",      require("./src/routes/product.routes"));
 app.use("/api/orders",        require("./src/routes/order.routes"));
@@ -39,8 +39,9 @@ app.use("/api/admin",         require("./src/routes/admin.routes"));
 app.use("/api/payment",       require("./src/routes/payment.routes"));
 app.use("/api/page-products", require("./src/routes/pageProducts.routes"));
 app.use("/api/support",       require("./src/routes/support.routes"));
+app.use("/api/ai",            require("./src/routes/ai.routes"));
 
-/*Health check*/
+/* Health check */
 app.get("/", (req, res) =>
   res.json({ message: "VELTORN API Running ✅", version: "1.0.0", env: process.env.NODE_ENV || "development" })
 );
