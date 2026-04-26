@@ -87,7 +87,7 @@ export default function AIAssistant() {
     } catch (err) {
       setMessages(prev => [...prev, {
         role: "assistant",
-        content: "Oops! Kuch error ho gaya. Thodi der baad try karo ya support se contact karo. 🙏",
+        content: "Oops! Something went wrong. Please try again later or contact support. 🙏",
       }]);
     } finally {
       setLoading(false);
