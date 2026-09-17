@@ -75,7 +75,7 @@ export default function UserProfile() {
         <ArrowLeft size={14} /> Back
       </button>
 
-      <div className="max-w-xl mx-auto space-y-5">
+      <div className="max-w-xl max-auto space-y-5">
 
         {/* Avatar + Name header */}
         <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex items-center gap-5">
