@@ -51,7 +51,7 @@ router.post("/chat", async (req, res) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "gemma2-9b-it",
         max_tokens: 500,
         temperature: 0.7,
         messages: [
