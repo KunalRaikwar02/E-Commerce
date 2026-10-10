@@ -68,13 +68,13 @@ function callGroq(apiKey, messages) {
 
     const req = https.request(options, (res) => {
       let data = "";
-      res.on("data", chunk => { data += chunk; });
+      res.on("data", chunk => { data += chunk });
       res.on("end", () => {
         try {
           const parsed = JSON.parse(data);
           resolve({ ok: res.statusCode >= 200 && res.statusCode < 300, data: parsed, status: res.statusCode });
         } catch (e) {
-          reject(new Error("Failed to parse response: " + data));
+          reject(new Error("Failed to parse to response:" + data));
         }
       });
     });
@@ -87,7 +87,7 @@ function callGroq(apiKey, messages) {
 
 router.post("/chat", async (req, res) => {
   try {
-    const { messages } = req.body;
+    const { message } = req.body;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ message: "messages array required" });
