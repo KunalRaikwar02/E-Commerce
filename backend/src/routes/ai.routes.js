@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const https = require("https");
 
 const SYSTEM_PROMPT = `You are VIRA — VELTORN's AI Shopping Assistant. VELTORN is a premium anime streetwear brand from India.
 
@@ -27,97 +26,55 @@ PAYMENT: COD, UPI, Credit/Debit Card (Razorpay)
 RETURNS: Contact support within 7 days
 
 LANGUAGE RULE:
-LANGUAGE RULE:
-- Default language is ENGLISH — always respond in English first
-- If user writes in Hindi or Hinglish → then respond in Hindi/Hinglish
-- If user writes in English → respond in English only
+- If user writes in Hindi or Hinglish → respond in Hindi/Hinglish
+- If user writes in English → respond in English
 
-PERSONALITY: Cool, helpful, fashion-forward. Use emojis occasionally. Keep responses concise (2-4 sentences) unless detailed help is needed.
-
-PRODUCT DISPLAY RULE:
-When user asks to show, dikhao, recommend, suggest products — format your response with a product list like:
-**[Category] Picks:**
-• Product name — ₹Price
-• Product name — ₹Price
-Then add a helpful tip.
-
-Never make up products outside the catalog.`;
-
-function callGroq(apiKey, messages) {
-  return new Promise((resolve, reject) => {
-    const body = JSON.stringify({
-      model: "llama-3.1-8b-instant",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...messages.map(m => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content }))
-      ],
-      max_tokens: 500,
-      temperature: 0.7,
-    });
-
-    const options = {
-      hostname: "api.groq.com",
-      path: "/openai/v1/chat/completions",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Length": Buffer.byteLength(body),
-      },
-    };
-
-    const req = https.request(options, (res) => {
-      let data = "";
-      res.on("data", chunk => { data += chunk });
-      res.on("end", () => {
-        try {
-          const parsed = JSON.parse(data);
-          resolve({ ok: res.statusCode >= 200 && res.statusCode < 300, data: parsed, status: res.statusCode });
-        } catch (e) {
-          reject(new Error("Failed to parse to response:" + data));
-        }
-      });
-    });
-
-    req.on("error", reject);
-    req.write(body);
-    req.end();
-  });
-}
+PERSONALITY: Cool, helpful, fashion-forward. Use emojis occasionally. Keep responses concise (2-4 sentences) unless detailed help is needed.`;
 
 router.post("/chat", async (req, res) => {
   try {
-    const { message } = req.body;
+    // FIX: properly destructure messages from req.body
+    const { messages } = req.body;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ message: "messages array required" });
     }
 
-    const apiKey = process.env.GROQ_API_KEY;
-    if (!apiKey) {
-      console.error("GROQ_API_KEY not set");
-      return res.status(500).json({ message: "AI not configured" });
+    if (!process.env.GROQ_API_KEY) {
+      return res.status(500).json({ message: "GROQ_API_KEY not configured" });
     }
 
-    console.log("Calling Groq API with", messages.length, "messages");
+    const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        max_tokens: 500,
+        temperature: 0.7,
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          ...messages.map(m => ({ role: m.role, content: m.content })),
+        ],
+      }),
+    });
 
-    const { ok, data, status } = await callGroq(apiKey, messages);
+    const data = await groqRes.json();
 
-    console.log("Groq response status:", status);
-
-    if (!ok) {
-      console.error("Groq error:", JSON.stringify(data));
-      return res.status(500).json({ message: "AI error: " + (data?.error?.message || "Unknown") });
+    if (!groqRes.ok) {
+      console.error("Groq API error:", JSON.stringify(data));
+      return res.status(500).json({ message: "AI service error", detail: data?.error?.message || "Unknown error" });
     }
 
     const reply = data?.choices?.[0]?.message?.content;
 
     if (!reply) {
-      console.error("Empty Groq response:", JSON.stringify(data));
-      return res.status(500).json({ message: "Empty AI response" });
+      console.error("Groq empty response:", JSON.stringify(data));
+      return res.status(500).json({ message: "Empty response from AI" });
     }
 
-    console.log("Groq reply received, length:", reply.length);
     res.json({ reply });
 
   } catch (err) {
